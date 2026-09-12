@@ -1,0 +1,20 @@
+# --- Step 1: download & transcribe ---
+yt-dlp>=2024.8.6
+openai-whisper>=20231117
+torch>=2.1.0            # CPU wheel is fine; install a CUDA wheel separately for GPU speed
+
+# --- Step 2: translate ---
+transformers>=4.41.0                # NLLB-200, run locally
+sentencepiece>=0.2.0                 # NLLB-200 tokenizer
+# transformers pulls the model from Hugging Face on first run:
+#   facebook/nllb-200-distilled-600M  (~2.5GB download, cached after)
+
+# --- Step 3: synthesize ---
+edge-tts>=6.1.12
+pydub>=0.25.1
+librosa>=0.10.2                    # used for the male/female voice-matching heuristic
+
+# --- system dependency (not a pip package) ---
+# ffmpeg and ffprobe must be installed and on PATH, e.g.:
+#   Ubuntu/Debian:  sudo apt install ffmpeg
+#   macOS:          brew install ffmpeg
